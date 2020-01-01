@@ -31,7 +31,6 @@ class Header extends Component {
                 linkTo = "/"
                 width = '70px'
                 height = '70px'
-
               />
             </div>
           </div>
