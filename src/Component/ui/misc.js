@@ -10,7 +10,8 @@ export const Tag = props => {
         color: props.color,
         padding: "5px 10px",
         display: "inline-block",
-        fontFamily: "Righteous"
+        fontFamily: "Righteous",
+        ...props.add
 
         //Truyen vao bang cach
         // ...props.add
