@@ -3,6 +3,8 @@ import { easePolyOut } from "d3-ease";
 import Animate from "react-move/Animate";
 import Otamendi from '../../../Resources/images/players/Otamendi.png';
 
+import PlayerCard from '../../ui/playerCard';
+
 class HomeCard extends Component {
 
   state = {
@@ -50,7 +52,12 @@ class HomeCard extends Component {
                 bottom
               }}
             >
-              div
+              <PlayerCard
+                number = '30'
+                name = 'Nicolas'
+                lastname = 'Otamendi'
+                bck = {Otamendi}
+              />
             </div>
           )
         }}
