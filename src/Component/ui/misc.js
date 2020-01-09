@@ -63,6 +63,6 @@ export const validate = (element) => {
     error = !valid ? [valid, message] : error;
   };
 
-  return console.error();
+  return error;
 
 }
