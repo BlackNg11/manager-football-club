@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Fade from 'react-reveal/Fade';
 import {validate} from '../../ui/misc';
+import { firebasePromations } from '../../../firebase';
 
 import FormField from '../../ui/formFields';
 
@@ -46,7 +47,7 @@ class Enroll extends Component {
     })
   }
 
-  resetFormSucces() {
+  resetFormSucces(type) {
     const newFormData = {...this.state.formdata};
 
     for(let key in newFormData) {
@@ -58,7 +59,7 @@ class Enroll extends Component {
     this.setState({
       formError: false,
       formdata: newFormData,
-      formSucces: 'Congratulation'
+      formSucces: type ? 'Congratulation' : 'Already on the database'
     });
 
     this.succesMessage();
@@ -85,8 +86,21 @@ class Enroll extends Component {
     }
 
     if (formIsValid) {
-      //console.log(dataToSubmit);
-      this.resetFormSucces();
+
+      //Kiem tra du lieu da co trong database chua (Firebase)
+      firebasePromations.orderByChild('email').equalTo(dataToSubmit.email).once('value')
+      .then((snapshot) => {
+        if (snapshot.val() === null) {
+          firebasePromations.push(dataToSubmit)
+          this.resetFormSucces(true);
+        }else {
+          this.resetFormSucces(false);
+        }
+      });
+
+
+
+
     } else {
       this.setState({
         formError: true
@@ -112,6 +126,9 @@ class Enroll extends Component {
               { this.state.formError ? <div className="error_label">Something is wrong,try again</div> : null }
               <div className="success_label">{this.state.formSucces}</div>
               <button onClick={(event) => this.submitForm(event)}>Enroll</button>
+              <div className="enroll_discl">
+                
+              </div>
             </div>
           </form>
         </div>
