@@ -4,15 +4,21 @@ import './Resources/css/app.css';
 
 import { BrowserRouter } from 'react-router-dom';
 import Route from './routes';
+import {firebase} from './firebase';
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
-      <Route />
+      <Route {...props}/>
     </BrowserRouter>
   )
 }
-ReactDOM.render(<App />, document.getElementById('root'));
+
+firebase.auth().onAuthStateChanged((user) => {
+  ReactDOM.render(<App user={user}/>, document.getElementById('root'));
+})
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
