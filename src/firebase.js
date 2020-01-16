@@ -21,6 +21,8 @@ const firebaseDB = firebase.database();
 const firebaseMatches = firebaseDB.ref('matches');
 const firebasePromations = firebaseDB.ref('promotions');
 const firebaseTeams = firebaseDB.ref('teams');
+const firebasePlayer= firebaseDB.ref('players');
+
 
 
 // firebaseDB.ref('matches').once('value').then((snapshot) => {
@@ -32,5 +34,6 @@ export {
   firebaseDB,
   firebaseMatches,
   firebasePromations,
-  firebaseTeams
+  firebaseTeams,
+  firebasePlayer
 }
