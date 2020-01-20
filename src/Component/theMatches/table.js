@@ -32,7 +32,7 @@ class LeagueTable extends Component {
                 positions: positions
             })
 
-            console.log(this.state);
+            //console.log(this.state);
         })
 
 
